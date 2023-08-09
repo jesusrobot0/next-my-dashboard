@@ -1,12 +1,14 @@
-# Server Side + Client Side Rendering
+# Estrategias de renderizado
 
-En Next, por defecto, todos los componentes son Server Components, los cuales no permiten ejecutar código en el lado del cliente. Si puedes ejecutar algunas cosas, pero lo que se va a terminar enviando al cliente es el resultado de la ejecución.
+## Server Side + Client Side Rendering
 
-Por lo tanto, hooks como useState, useEffect, useContext, etc; no funcionan en primera instancia, pero con la directiva `'use client'` esto se puede corregir.
+En Next, por defecto, todos los componentes son Server Components, los cuales no permiten ejecutar código en el lado del cliente. Si puedes ejecutar JS pero en el servidor, y lo que se va a terminar enviando al cliente es el resultado de dicha ejecución.
 
-Aunque no poder hacer esto de primeras no es un problema, los Server Components tienen muchas ventajas, como la de minimizar el código que se envía al cliente dando como resultado tiempos de carga más cortos.
+Pero hooks como useState, useEffect, useContext, etc; no funcionan de primera, pero con la directiva `'use client'` esto se puede modificar.
 
-## Temas puntuales de la sección
+Aunque no poder hacer esto de primeras no es un problema, los Server Components tienen muchas ventajas, como la de minimizar el código que se envía al cliente dando como resultado tiempos de carga mucho más cortos.
+
+### Temas puntuales de la sección
 
 - Tailwind classes
 - Estructura de un dashboard
@@ -18,7 +20,7 @@ Aunque no poder hacer esto de primeras no es un problema, los Server Components 
 - Permitir imágenes externas
 - Entre otras cosas
 
-## Redirecciones
+### Redirecciones
 
 Las redirecciones se hacen con la función de Next `redirect()` y funciona tanto en componentes de servidor como en los que se ejecutan en el cliente. Recibe dos parámetros el primero para especificar la ruta a donde se va a redirigir y el otro para el tipo de redirección, por defecto es push.
 
@@ -31,13 +33,13 @@ export default function HomePage() {
 }
 ```
 
-## Next/Image
+### Next/Image
 
-Es un componente propio de Next que añade características de optimización automática a la etiqueta `<a>`.
+Es un componente propio de Next que añade características de optimización automática a la etiqueta `<img/>`.
 
 - Recorta la imagen al tamaño adecuado para cada dispositivo
-- Convierte el formato de imagen a formatos modernos como **AVIF** Y **WebP**
-- Carga las imágenes solo cuando aparecen en el viewport para una experiencia de carga más rápida.
+- Convierte el formato de la imagen a formatos modernos como **AVIF** Y **WebP**
+- Carga las imágenes solo cuando aparecen en el viewport para una experiencia de carga más rápida (**lazy loading**).
 - Previene el **layout shifting** cuando las imágenes estén cargando.
 
 ```tsx
@@ -71,9 +73,9 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-## Manejo de estado del lado del cliente (hooks)
+### Manejo de estado del lado del cliente (hooks)
 
-Para poder utilizar `useState()` o cualquier otro **hook** de React es necesario convertir el componente en el que se va a utilizar en un un **Client Component** con `'use client'` esto permite decirle a Next que debe de renderizar el componente en el lado del cliente.
+Para poder utilizar `useState()` o cualquier otro **hook** de React es necesario convertir el componente en un **Client Component** con `'use client'` esto permite decirle a Next que debe de renderizar el componente en el lado del cliente.
 
 ```tsx
 'use client'
@@ -104,6 +106,10 @@ export function CartCounter({ initialValue = 0 }: Props) {
 }
 ```
 
-Este componente recibe la **prop** `initialValue` desde un **Server Component**, esta es una característica muy poderosa de Next ya que permite enviar al componente `CartCounter` con información del del servidor desde el principio sin necesidad de hacer fetch en el cliente.
+Este componente recibe la **prop** `initialValue` desde un **Server Component**, esta es una característica muy poderosa de Next ya que permite enviar el componente `CartCounter` con información del del servidor desde el principio sin necesidad de hacer fetch en el cliente.
 
 > 💡 Cuando estés diseñando tu aplicación, visualízala como un árbol de componentes generados desde el servidor. Solo algunas partes específicas, como hojas en el árbol, deben ser creadas por el cliente. Esta estructura te permitirá maximizar el rendimiento y la eficiencia de tu app, asegurando que solo se transfiera al cliente lo que realmente necesita.
+
+----
+
+## Generación dinámica - SSR
