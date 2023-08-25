@@ -1,4 +1,4 @@
-import { CartCounter } from "@/app/shopping-cart";
+import { CartCounter } from "@/shopping-cart";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,6 +7,11 @@ export const metadata: Metadata = {
 }
 
 export default function CounterPage() {
+  /**
+   * Este es un componente de servidor que renderiza un componente cliente.
+   * El valor del prop "initialValue" que le enviamos desde aquí se lo enviamos desde el 
+   * servidor!.
+   */
   return (
     <div className="flex flex-col justify-center items-center w-full h-full">
       <span>Carrito de compras</span>

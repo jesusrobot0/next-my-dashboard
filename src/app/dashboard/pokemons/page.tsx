@@ -1,19 +1,10 @@
-import { PokemonsGrid, PokemonsResponse, SimplePokemon } from "@/app/pokemons"
+import { PokemonsGrid } from "@/pokemons"
+import { getPokemons } from "@/pokemons/api"
 
-const getPokemons = async (limit = 1281, offset = 0): Promise<SimplePokemon[]> => {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
-  const data: PokemonsResponse = await response.json()
 
-  const pokemons = data.results.map(({ url, name }) => ({
-    id: url.split('/').at(-2)!,
-    name
-  }))
 
-  return pokemons
-}
-
-export default async function PokemonsPage() {
-  const pokemons = await getPokemons(151)
+export default async function PokemonsListPage() {
+  const pokemons = await getPokemons()
 
   return (
     <div className="flex flex-col">

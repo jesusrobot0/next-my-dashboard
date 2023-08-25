@@ -1,3 +1,8 @@
+/**
+ * Para poder usar hooks y JS que se ejecute en el cliente, hay que
+ * convertir el componente a client component con 'use client'.
+ */
+
 'use client'
 
 import { useState } from "react";

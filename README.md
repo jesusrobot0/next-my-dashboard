@@ -53,7 +53,7 @@ import Image from 'next/image'
 />
 ```
 
-Estos cuatro atributos son obligatorios.
+Estos cuatro atributos son obligatorios, existen otros como `priority` que al establecerlo en `true` da maxima prioridad a la imagen y hace el fetch del recurso desde el inicio, este atributo se recomienda usarlo solo en las imágenes más importantes del sitio y que se encuentran en el viewport en cuanto se renderiza la página.
 
 Para cargar imágenes de orígenes externos hay que agregar la siguiente configuración en el archivo `next.config.js`:
 
@@ -113,3 +113,40 @@ Este componente recibe la **prop** `initialValue` desde un **Server Component**,
 ----
 
 ## Generación dinámica - SSR
+
+### Manejo de errores 500
+
+Lor errores **500** son errores que suceden en el lado del servidor, por lo que el único responsable de manejarlos es este. Next ofrece una forma muy fácil de manejar este tipo de errores mediante la creación del archivo `error.js`
+
+```tsx
+'use client' // Error components must be Client Components
+ 
+import { useEffect } from 'react'
+ 
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error
+  reset: () => void
+}) {
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error)
+  }, [error])
+ 
+  return (
+    <div>
+      <h2>Something went wrong!</h2>
+      <button
+        onClick={
+          // Attempt to recover by trying to re-render the segment
+          () => reset()
+        }
+      >
+        Try again
+      </button>
+    </div>
+  )
+}
+```
