@@ -1,4 +1,4 @@
 export interface SimplePokemon {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }

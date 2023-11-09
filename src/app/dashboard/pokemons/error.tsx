@@ -1,17 +1,17 @@
-'use client' // Error components must be Client Components
+"use client"; // Error components must be Client Components
 
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 interface Props {
-  error: Error
-  reset: () => void
+  error: Error;
+  reset: () => void;
 }
 
 export default function Error({ error, reset }: Props) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
+    console.error(error);
+  }, [error]);
 
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-900">
@@ -52,10 +52,28 @@ export default function Error({ error, reset }: Props) {
           transform="translate(-31.39089 -100.5)"
           opacity="0.2"
         />
-        <ellipse cx="198.60911" cy="424.5" rx={187} ry="25.43993" fill="#3f3d56" />
-        <ellipse cx="198.60911" cy="424.5" rx={157} ry="21.35866" opacity="0.1" />
+        <ellipse
+          cx="198.60911"
+          cy="424.5"
+          rx={187}
+          ry="25.43993"
+          fill="#3f3d56"
+        />
+        <ellipse
+          cx="198.60911"
+          cy="424.5"
+          rx={157}
+          ry="21.35866"
+          opacity="0.1"
+        />
         <ellipse cx="836.60911" cy="660.5" rx={283} ry="38.5" fill="#3f3d56" />
-        <ellipse cx="310.60911" cy="645.5" rx={170} ry="23.12721" fill="#3f3d56" />
+        <ellipse
+          cx="310.60911"
+          cy="645.5"
+          rx={170}
+          ry="23.12721"
+          fill="#3f3d56"
+        />
         <path
           d="M494,726.5c90,23,263-30,282-90"
           transform="translate(-31.39089 -100.5)"
@@ -157,7 +175,13 @@ export default function Error({ error, reset }: Props) {
           fill="currentColor"
           opacity="0.8"
         />
-        <rect x="317.60911" y={150} width={16} height={16} fill="currentColor" />
+        <rect
+          x="317.60911"
+          y={150}
+          width={16}
+          height={16}
+          fill="currentColor"
+        />
         <rect
           x="271.60911"
           y={251}
@@ -174,7 +198,13 @@ export default function Error({ error, reset }: Props) {
           fill="currentColor"
           opacity="0.8"
         />
-        <rect x="317.60911" y={251} width={16} height={16} fill="currentColor" />
+        <rect
+          x="317.60911"
+          y={251}
+          width={16}
+          height={16}
+          fill="currentColor"
+        />
         <rect
           x="271.60911"
           y={352}
@@ -191,7 +221,13 @@ export default function Error({ error, reset }: Props) {
           fill="currentColor"
           opacity="0.8"
         />
-        <rect x="317.60911" y={352} width={16} height={16} fill="currentColor" />
+        <rect
+          x="317.60911"
+          y={352}
+          width={16}
+          height={16}
+          fill="currentColor"
+        />
         <circle cx="316.60911" cy={538} r={79} fill="#2f2e41" />
         <rect x="280.60911" y={600} width={24} height={43} fill="#2f2e41" />
         <rect x="328.60911" y={600} width={24} height={43} fill="#2f2e41" />
@@ -228,10 +264,16 @@ export default function Error({ error, reset }: Props) {
       </svg>
 
       <div className="flex flex-col items-center justify-center">
-        <p className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-gray-600 mt-8">500</p>
-        <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mt-2">{error.message}</p>
-        <p className="md:text-lg xl:text-xl text-gray-500 mt-4">Whoops, something went wrong on our servers.</p>
+        <p className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-gray-600 mt-8">
+          500
+        </p>
+        <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mt-2">
+          {error.message}
+        </p>
+        <p className="md:text-lg xl:text-xl text-gray-500 mt-4">
+          Whoops, something went wrong on our servers.
+        </p>
       </div>
     </div>
-  )
+  );
 }
