@@ -1,27 +1,32 @@
-import Image from 'next/image'
-import { SidebarMenuItem } from './SidebarMenuItem';
-import { IoBrowsersOutline, IoCalculator, IoFootball, IoLogoReact } from "react-icons/io5";
+import Image from "next/image";
+import { SidebarMenuItem } from "../SidebarMenuItem";
+import {
+  IoBrowsersOutline,
+  IoCalculator,
+  IoFootball,
+  IoLogoReact,
+} from "react-icons/io5";
 
 const menuItems = [
   {
-    path: '/dashboard/main',
+    path: "/dashboard/main",
     icon: <IoBrowsersOutline size={40} />,
-    title: 'Dashboard',
-    subTitle: 'Visualización'
+    title: "Dashboard",
+    subTitle: "Visualización",
   },
   {
-    path: '/dashboard/counter',
+    path: "/dashboard/counter",
     icon: <IoCalculator size={40} />,
-    title: 'Counter',
-    subTitle: 'Contador Client Side'
+    title: "Counter",
+    subTitle: "Contador Client Side",
   },
   {
-    path: '/dashboard/pokemons',
+    path: "/dashboard/pokemons",
     icon: <IoFootball size={40} />,
-    title: 'Pokémon\'s',
-    subTitle: 'Generación Estática'
-  }
-]
+    title: "Pokémon's",
+    subTitle: "Generación Estática",
+  },
+];
 
 export function Sidebar() {
   return (
@@ -33,7 +38,7 @@ export function Sidebar() {
         <h1 className="flex items-center gap-2 text-lg md:text-2xl font-bold text-white">
           <IoLogoReact />
           <span>Dash</span>
-          <span className='text-blue-500'>8</span>
+          <span className="text-blue-500">8</span>
         </h1>
         <p className="text-slate-500 text-sm">
           Manage your actions and activities
@@ -55,10 +60,10 @@ export function Sidebar() {
         </a>
       </div>
       <div id="nav" className="w-full px-6">
-        {menuItems.map(item => (
+        {menuItems.map((item) => (
           <SidebarMenuItem key={item.path} {...item} />
         ))}
       </div>
     </div>
-  )
+  );
 }
