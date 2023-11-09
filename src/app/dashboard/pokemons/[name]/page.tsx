@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import { capitalizeWord } from "@/utils";
-import { getPokemonByName, getPokemons } from "@/pokemons/api";
+import { getPokemonByName, getPokemons } from "@/pokemons/services";
 
 interface Props {
   params: { name: string };

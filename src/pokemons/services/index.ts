@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
-import { Pokemon, PokemonsResponse, SimplePokemon } from "@/pokemons";
+import {
+  Pokemon,
+  PokemonsResponse,
+  SimplePokemon,
+} from "@/pokemons/interfaces";
 
 export const getPokemons = async (
   limit = 151,
