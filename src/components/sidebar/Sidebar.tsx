@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SidebarMenuItem } from "../SidebarMenuItem";
+import { SidebarMenuItem } from "..";
 import {
   IoBrowsersOutline,
   IoCalculator,
