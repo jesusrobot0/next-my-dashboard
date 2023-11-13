@@ -5,22 +5,51 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/store";
+import {
+  addOne,
+  initCounterState,
+  resetCount,
+  substractOne,
+} from "@/store/counter/counterSlice";
 
 interface Props {
   initialValue: number;
 }
 
-export function CartCounter({ initialValue = 0 }: Props) {
-  const [counter, setCounter] = useState(initialValue);
+export interface CounterResponse {
+  count: number;
+}
 
-  const handleAdd = () => setCounter(counter + 1);
-  const handleReset = () => setCounter(initialValue);
-  const handleSubtract = () => setCounter(counter - 1);
+async function getAPICounter(): Promise<CounterResponse> {
+  const response = await fetch("/api/counter");
+  const counterValue = await response.json();
+
+  return counterValue;
+}
+
+export function CartCounter({ initialValue = 0 }: Props) {
+  const count = useAppSelector((state) => state.counter.count);
+  const dispatch = useAppDispatch();
+
+  const handleAdd = () => dispatch(addOne());
+  const handleReset = () => dispatch(resetCount(0));
+  const handleSubtract = () => dispatch(substractOne());
+
+  // useEffect(() => {
+  //   dispatch(initCounterState(initialValue));
+  // }, [dispatch, initialValue]);
+
+  useEffect(() => {
+    getAPICounter().then(({ count }) => {
+      dispatch(initCounterState(count));
+    });
+  }, [dispatch]);
 
   return (
     <>
-      <span className="text-9xl">{counter}</span>
+      <span className="text-9xl">{count}</span>
       <div className="flex">
         <button
           onClick={handleAdd}
